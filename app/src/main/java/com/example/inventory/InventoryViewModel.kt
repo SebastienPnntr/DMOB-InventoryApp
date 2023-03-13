@@ -1,3 +1,5 @@
+// Par Pannatier Sebastien
+
 package com.example.inventory
 
 import androidx.lifecycle.ViewModel
