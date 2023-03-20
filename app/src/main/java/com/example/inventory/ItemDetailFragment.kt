@@ -56,9 +56,12 @@ class ItemDetailFragment : Fragment() {
         return binding.root
     }
     private fun bind(item: Item) {
-        binding.itemName.text = item.itemName
-        binding.itemPrice.text = item.getFormattedPrice()
-        binding.itemCount.text = item.quantityInStock.toString()
+        binding.apply{
+            itemName.text = item.itemName
+            itemPrice.text = item.getFormattedPrice()
+            itemCount.text = item.quantityInStock.toString()
+            sellItem.setOnClickListener{viewModel.sellItem(item)}
+        }
     }
 
     /**
