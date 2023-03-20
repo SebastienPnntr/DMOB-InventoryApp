@@ -74,6 +74,7 @@ class AddItemFragment : Fragment() {
             itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
             itemPrice.setText(price, TextView.BufferType.SPANNABLE)
             itemCount.setText(item.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
+            saveAction.setOnClickListener { updateItem() }
         }
     }
 
@@ -83,6 +84,19 @@ class AddItemFragment : Fragment() {
                 binding.itemName.text.toString(),
                 binding.itemPrice.text.toString(),
                 binding.itemCount.text.toString()
+            )
+            val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun updateItem() {
+        if (isEntryValid()) {
+            viewModel.updateItem(
+                this.navigationArgs.itemId,
+                this.binding.itemName.text.toString(),
+                this.binding.itemPrice.text.toString(),
+                this.binding.itemCount.text.toString()
             )
             val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
